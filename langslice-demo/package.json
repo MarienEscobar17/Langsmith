@@ -1,0 +1,16 @@
+{
+  "name": "langslice-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "demo": "node --env-file-if-exists=.env src/cli.mjs demo",
+    "chat": "node --env-file-if-exists=.env src/cli.mjs chat",
+    "dataset:upload": "node --env-file-if-exists=.env src/cli.mjs upload",
+    "evaluate": "node --env-file-if-exists=.env src/cli.mjs evaluate",
+    "evaluate:local": "node --env-file-if-exists=.env src/cli.mjs local",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": { "langsmith": "0.10.8", "openai": "7.28.0" }
+}

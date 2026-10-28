@@ -1,0 +1,597 @@
+[
+  {
+    "inputs": {
+      "request": "I would like a large hand-tossed pizza with pepperoni and pineapple.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni",
+          "pineapple"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "rejected",
+      "pizza": null,
+      "unavailable": [
+        "pineapple"
+      ]
+    },
+    "metadata": {
+      "case_id": "video-pineapple-zero",
+      "category": "video-reproduction",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with pepperoni.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "accepted",
+      "pizza": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni"
+        ],
+        "quantity": 1
+      },
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "pepperoni-available",
+      "category": "availability",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with pepperoni, pineapple.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni",
+          "pineapple"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 3,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "accepted",
+      "pizza": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni",
+          "pineapple"
+        ],
+        "quantity": 1
+      },
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "pineapple-restocked",
+      "category": "availability",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with pineapple.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pineapple"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "rejected",
+      "pizza": null,
+      "unavailable": [
+        "pineapple"
+      ]
+    },
+    "metadata": {
+      "case_id": "pineapple-only-zero",
+      "category": "availability",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with sausage.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "sausage"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "rejected",
+      "pizza": null,
+      "unavailable": [
+        "sausage"
+      ]
+    },
+    "metadata": {
+      "case_id": "sausage-zero",
+      "category": "availability",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with pineapple, sausage.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pineapple",
+          "sausage"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "rejected",
+      "pizza": null,
+      "unavailable": [
+        "pineapple",
+        "sausage"
+      ]
+    },
+    "metadata": {
+      "case_id": "two-unavailable",
+      "category": "availability",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 medium thin pizza with mushrooms, olives, basil.",
+      "order": {
+        "size": "medium",
+        "crust": "thin",
+        "toppings": [
+          "mushrooms",
+          "olives",
+          "basil"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "accepted",
+      "pizza": {
+        "size": "medium",
+        "crust": "thin",
+        "toppings": [
+          "mushrooms",
+          "olives",
+          "basil"
+        ],
+        "quantity": 1
+      },
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "vegetarian-available",
+      "category": "availability",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with pineapple.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pineapple"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 1,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "accepted",
+      "pizza": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pineapple"
+        ],
+        "quantity": 1
+      },
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "last-unit",
+      "category": "boundary",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 2 large hand-tossed pizza with pepperoni.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni"
+        ],
+        "quantity": 2
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 2,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "accepted",
+      "pizza": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni"
+        ],
+        "quantity": 2
+      },
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "exact-stock",
+      "category": "boundary",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 2 large hand-tossed pizza with pepperoni.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni"
+        ],
+        "quantity": 2
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 1,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "rejected",
+      "pizza": null,
+      "unavailable": [
+        "pepperoni"
+      ]
+    },
+    "metadata": {
+      "case_id": "insufficient-stock",
+      "category": "boundary",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 small pan pizza with no extra toppings.",
+      "order": {
+        "size": "small",
+        "crust": "pan",
+        "toppings": [],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "accepted",
+      "pizza": {
+        "size": "small",
+        "crust": "pan",
+        "toppings": [],
+        "quantity": 1
+      },
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "plain-pizza",
+      "category": "boundary",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with truffle.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "truffle"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "rejected",
+      "pizza": null,
+      "unavailable": [
+        "truffle"
+      ]
+    },
+    "metadata": {
+      "case_id": "unknown-topping",
+      "category": "validation",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 unspecified-size hand-tossed pizza with cheese.",
+      "order": {
+        "size": null,
+        "crust": "hand-tossed",
+        "toppings": [
+          "cheese"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "needs_clarification",
+      "pizza": null,
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "missing-size",
+      "category": "validation",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large unspecified-crust pizza with cheese.",
+      "order": {
+        "size": "large",
+        "crust": null,
+        "toppings": [
+          "cheese"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "needs_clarification",
+      "pizza": null,
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "missing-crust",
+      "category": "validation",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 0 large hand-tossed pizza with pepperoni.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni"
+        ],
+        "quantity": 0
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "needs_clarification",
+      "pizza": null,
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "zero-quantity",
+      "category": "validation",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  },
+  {
+    "inputs": {
+      "request": "Order 1 large hand-tossed pizza with pepperoni, pepperoni.",
+      "order": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni",
+          "pepperoni"
+        ],
+        "quantity": 1
+      },
+      "inventory": {
+        "cheese": 20,
+        "pepperoni": 10,
+        "pineapple": 0,
+        "mushrooms": 8,
+        "olives": 6,
+        "basil": 4,
+        "sausage": 0
+      }
+    },
+    "outputs": {
+      "status": "accepted",
+      "pizza": {
+        "size": "large",
+        "crust": "hand-tossed",
+        "toppings": [
+          "pepperoni"
+        ],
+        "quantity": 1
+      },
+      "unavailable": []
+    },
+    "metadata": {
+      "case_id": "duplicate-toppings",
+      "category": "validation",
+      "source": "Synthetic workshop example inspired by LangSlice video",
+      "stock_rule": "One stock unit per topping per pizza; atomic order; no substitution"
+    }
+  }
+]

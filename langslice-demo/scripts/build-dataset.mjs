@@ -1,0 +1,33 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import { STOCK, sampleInput } from '../src/agent.mjs';
+const cases = [];
+function add(id, order, changes, status, unavailable = [], category = 'availability', request = '') {
+  const inventory = { ...STOCK, ...changes };
+  const pizza = status === 'accepted' ? { ...order, toppings: [...new Set(order.toppings.map(t => t.trim().toLowerCase()))] } : null;
+  cases.push({ inputs: { request: request || `Order ${order.quantity} ${order.size ?? 'unspecified-size'} ${order.crust ?? 'unspecified-crust'} pizza with ${order.toppings.join(', ') || 'no extra toppings'}.`, order, inventory }, outputs: { status, pizza, unavailable }, metadata: { case_id: id, category, source: 'Synthetic workshop example inspired by LangSlice video', stock_rule: 'One stock unit per topping per pizza; atomic order; no substitution' } });
+}
+const order = (toppings, quantity = 1, size = 'large', crust = 'hand-tossed') => ({ size, crust, toppings, quantity });
+add('video-pineapple-zero', order(['pepperoni', 'pineapple']), {}, 'rejected', ['pineapple'], 'video-reproduction', sampleInput.request);
+add('pepperoni-available', order(['pepperoni']), {}, 'accepted');
+add('pineapple-restocked', order(['pepperoni', 'pineapple']), { pineapple: 3 }, 'accepted');
+add('pineapple-only-zero', order(['pineapple']), {}, 'rejected', ['pineapple']);
+add('sausage-zero', order(['sausage']), {}, 'rejected', ['sausage']);
+add('two-unavailable', order(['pineapple', 'sausage']), {}, 'rejected', ['pineapple', 'sausage']);
+add('vegetarian-available', order(['mushrooms', 'olives', 'basil'], 1, 'medium', 'thin'), {}, 'accepted');
+add('last-unit', order(['pineapple']), { pineapple: 1 }, 'accepted', [], 'boundary');
+add('exact-stock', order(['pepperoni'], 2), { pepperoni: 2 }, 'accepted', [], 'boundary');
+add('insufficient-stock', order(['pepperoni'], 2), { pepperoni: 1 }, 'rejected', ['pepperoni'], 'boundary');
+add('plain-pizza', order([], 1, 'small', 'pan'), {}, 'accepted', [], 'boundary');
+add('unknown-topping', order(['truffle']), {}, 'rejected', ['truffle'], 'validation');
+add('missing-size', order(['cheese'], 1, null), {}, 'needs_clarification', [], 'validation');
+add('missing-crust', order(['cheese'], 1, 'large', null), {}, 'needs_clarification', [], 'validation');
+add('zero-quantity', order(['pepperoni'], 0), {}, 'needs_clarification', [], 'validation');
+add('duplicate-toppings', order(['pepperoni', 'pepperoni']), {}, 'accepted', [], 'validation');
+const out = new URL('../data/', import.meta.url);
+await mkdir(out, { recursive: true });
+await writeFile(new URL('langslice-dataset.json', out), JSON.stringify(cases, null, 2) + '\n');
+await writeFile(new URL('langslice-dataset.jsonl', out), cases.map(c => JSON.stringify(c)).join('\n') + '\n');
+const quote = value => '"' + String(value).replaceAll('"', '""') + '"';
+const csv = ['request,order,inventory,status,pizza,unavailable', ...cases.map(c => [c.inputs.request, JSON.stringify(c.inputs.order), JSON.stringify(c.inputs.inventory), c.outputs.status, JSON.stringify(c.outputs.pizza), JSON.stringify(c.outputs.unavailable)].map(quote).join(','))];
+await writeFile(new URL('langslice-dataset.csv', out), csv.join('\r\n') + '\r\n');
+console.log(`Created ${cases.length} examples in data/.`);
